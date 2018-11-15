@@ -1,6 +1,14 @@
+require 'rdl'
+
 module Twitter
   module Streaming
     class Event
+      extend RDL::Annotate
+      var_type :@name, 'Symbol'
+      var_type :@source, 'Twitter::User'
+      var_type :@target, 'Twitter::User'
+      var_type :@target_object, 'Twitter::List or Twitter::Tweet'
+
       LIST_EVENTS = %i[
         list_created list_destroyed list_updated list_member_added
         list_member_added list_member_removed list_user_subscribed
@@ -15,10 +23,10 @@ module Twitter
 
       # @param data [Hash]
       def initialize(data)
-        @name = data[:event].to_sym
-        @source = Twitter::User.new(data[:source])
-        @target = Twitter::User.new(data[:target])
-        @target_object = target_object_factory(@name, data[:target_object])
+        @name = RDL.type_cast(data[:event], 'String').to_sym
+        @source = Twitter::User.new(RDL.type_cast(data[:source], 'String'))
+        @target = Twitter::User.new(RDL.type_cast(data[:target], 'String'))
+        @target_object = target_object_factory(@name, RDL.type_cast(data[:target_object], 'Hash<String, String>'))
       end
 
     private
