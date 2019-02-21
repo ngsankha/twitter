@@ -77,3 +77,13 @@ def capture_warning
   end
   result
 end
+
+if ENV["NODYNCHECK"]
+  require 'rdl'
+  RDL::Config.instance.check_comp_types = false
+end
+
+if ENV["TYPECHECK"]
+  puts "Run type checker here..."
+  require_relative '../typecheck.rb'
+end
