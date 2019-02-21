@@ -9,7 +9,7 @@ module Twitter
   module Streaming
     class MessageParser
       def self.parse(data) # rubocop:disable AbcSize, CyclomaticComplexity, MethodLength, PerceivedComplexity
-        deleted_tweet_data = data[:delete]
+        deleted_tweet_data = RDL.type_cast(data[:delete], 'Hash<Symbol, Hash<Symbol,String>>', force: true)
         if data[:id]
           Tweet.new(data)
         elsif data[:event]

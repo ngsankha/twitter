@@ -25,4 +25,5 @@ RDL.type     Twitter::Streaming::StallWarning, :initialize, '(Hash<Symbol, Strin
 
 ## Call `do_typecheck` to type check methods with :later tag
 ## The second argument is optional and is used for printing configurations.
+RDL::Config.instance.use_dep_types = false
 RDL.do_typecheck :later, (ENV["NODYNCHECK"] || ENV["TYPECHECK"])
