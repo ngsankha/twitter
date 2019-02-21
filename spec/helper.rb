@@ -84,6 +84,5 @@ if ENV["NODYNCHECK"]
 end
 
 if ENV["TYPECHECK"]
-  puts "Run type checker here..."
   require_relative '../typecheck.rb'
 end
