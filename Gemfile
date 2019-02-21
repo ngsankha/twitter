@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rdl', path: '../rdl'
+gem 'rdl', git: 'https://github.com/plum-umd/rdl.git', branch: 'pldi-comp-types'
 gem 'jruby-openssl', platforms: :jruby
 gem 'rake'
 gem 'yard'
