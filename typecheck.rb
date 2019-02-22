@@ -5,6 +5,7 @@ require 'twitter'
 puts "Type checking Twitter Gem methods..."
 
 # Type checked methods below
+## Methods located in ~/twitter/lib/twitter/streaming/event.rb
 RDL.type     Twitter::Streaming::Event, :initialize, '({event: String, source: String, target: String, target_object: Hash<String, String>}) -> self', wrap: false, typecheck: :later
 RDL.type     Twitter::Streaming::Event, :target_object_factory, '(Symbol, Hash<String, String>) -> Twitter::List or Twitter::Tweet', wrap: false, typecheck: :later
 RDL.type     Twitter::Streaming::MessageParser, 'self.parse', '({id: Integer, event: String, direct_message: String, friends: Array<Integer>, delete: {status: Hash<Symbol, String>}, warning: Hash<Symbol, String>}) -> Twitter::Tweet or Twitter::Streaming::Event or Twitter::DirectMessage or Twitter::Streaming::FriendList or Twitter::Streaming::DeletedTweet or Twitter::Streaming::StallWarning', wrap: false, typecheck: :later
